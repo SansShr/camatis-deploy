@@ -77,7 +77,7 @@ async def get_route_detail(route_id: str):
 # ============== Optimization Routes ==============
 
 @router.post("/optimize", response_model=OptimizeResponse)
-async def run_optimization():
+def run_optimization():
     """
     Run your existing CAMATIS pipeline inference
     """

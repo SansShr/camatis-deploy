@@ -1,6 +1,7 @@
 import os
 import sys
 import traceback
+import threading
 from typing import Any, Dict, Optional
 
 # Add project root to path
@@ -13,6 +14,7 @@ class PipelineService:
     
     def __init__(self):
         self.pipeline = None
+        self._inference_lock = threading.Lock()
         self._last_run_timestamp = None
         print("[Pipeline] PipelineService initialized")
     
@@ -30,6 +32,11 @@ class PipelineService:
                 raise
     
     def run_inference(self) -> Dict[str, Any]:
+        # A single model run at a time avoids duplicate memory allocations.
+        with self._inference_lock:
+            return self._run_inference()
+
+    def _run_inference(self) -> Dict[str, Any]:
         """Run your existing pipeline inference"""
         print("[Pipeline] run_inference called")
         self._init_pipeline()
