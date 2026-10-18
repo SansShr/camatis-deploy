@@ -8,15 +8,6 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(_
 sys.path.insert(0, PROJECT_ROOT)
 print(f"[Pipeline] Project root: {PROJECT_ROOT}")
 
-# Import your existing pipeline
-try:
-    from camatis.run_agents_pipeline import CAMATISDecisionPipeline
-    print("[Pipeline] Successfully imported CAMATISDecisionPipeline")
-except Exception as e:
-    print(f"[Pipeline] Failed to import: {e}")
-    traceback.print_exc()
-    raise
-
 class PipelineService:
     """Service to run your existing pipeline"""
     
@@ -30,6 +21,7 @@ class PipelineService:
         if self.pipeline is None:
             print("[Pipeline] Loading CAMATIS pipeline...")
             try:
+                from camatis.run_agents_pipeline import CAMATISDecisionPipeline
                 self.pipeline = CAMATISDecisionPipeline()
                 print("[Pipeline] Pipeline ready!")
             except Exception as e:

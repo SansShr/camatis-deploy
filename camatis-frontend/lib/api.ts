@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8001/api";
+const BASE = "/api";
 
 async function get<T>(path: string, fallback: T): Promise<T> {
   try {

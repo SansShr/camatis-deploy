@@ -13,7 +13,7 @@ interface CriticalRoute {
   anomaly: boolean;
 }
 
-export default function CriticalRoutes({ results }: { results: any[] }) {
+export default function CriticalRoutes({ results }: { results: CriticalRoute[] }) {
   // Find routes that need immediate attention
   const criticalRoutes = results
     .filter(r => r.waiting_passengers > 50 || r.anomaly || r.buses_added > 2)

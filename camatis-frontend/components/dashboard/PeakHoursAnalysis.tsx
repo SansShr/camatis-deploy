@@ -85,7 +85,7 @@ export default function PeakHoursAnalysis({ results }: { results: any[] }) {
             <YAxis tick={{ fontSize: 10 }} />
             <Tooltip 
               contentStyle={{ fontSize: 12, borderRadius: 8 }}
-              formatter={(value: number) => [`${value} passengers`, 'Demand']}
+              formatter={(value) => [`${value ?? 0} passengers`, 'Demand']}
             />
             <Bar dataKey="demand" radius={[4, 4, 0, 0]}>
               {hourlyData.map((entry, index) => (
